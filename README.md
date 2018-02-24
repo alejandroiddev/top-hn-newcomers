@@ -62,4 +62,6 @@ and then run the created package:
  - Simple web with top ten board
  - Reactive 
  - Cucumber tests
+ - Use H2 in tests
+ - Create Vue webapp to check stories and record holder
  - ...

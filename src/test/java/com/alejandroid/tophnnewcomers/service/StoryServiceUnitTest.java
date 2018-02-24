@@ -1,6 +1,8 @@
 package com.alejandroid.tophnnewcomers.service;
 
 import com.alejandroid.tophnnewcomers.domain.Story;
+import com.alejandroid.tophnnewcomers.repository.StoryRepository;
+import com.alejandroid.tophnnewcomers.resource.StoryResource;
 import com.google.common.collect.Lists;
 import org.junit.Before;
 import org.junit.BeforeClass;
@@ -15,6 +17,7 @@ import java.util.Comparator;
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.mockito.Matchers.anyList;
 import static org.mockito.Matchers.anyLong;
 import static org.mockito.Mockito.when;
 
@@ -26,6 +29,9 @@ public class StoryServiceUnitTest {
 
     @Mock
     private HackerNewsService hackerNewsServiceMock;
+
+    @Mock
+    private StoryRepository storyRepository;
 
     private List<Long> newStories;
     private Long newStory;
@@ -40,6 +46,7 @@ public class StoryServiceUnitTest {
                 .thenReturn(Lists.newArrayList(newStory));
         when(hackerNewsServiceMock.findStory(anyLong(), anyLong()))
                 .thenAnswer(i -> this.createStory((Long) i.getArguments()[0],(Long) i.getArguments()[1]));
+        when(storyRepository.findAll()).thenReturn(new ArrayList<>());
     }
 
     @Test

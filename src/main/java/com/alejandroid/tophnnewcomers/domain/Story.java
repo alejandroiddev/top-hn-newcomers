@@ -1,13 +1,19 @@
 package com.alejandroid.tophnnewcomers.domain;
 
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Transient;
 import java.util.ArrayList;
 import java.util.List;
 
+@Entity
 public class Story implements Comparable<Story> {
 
+    @Id
     private Long id;
 
     private String by;
+    @Transient
     private List<Long> kids = new ArrayList<>();
     private Long score;
     private Long time;

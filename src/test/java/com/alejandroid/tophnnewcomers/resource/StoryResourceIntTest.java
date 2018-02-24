@@ -23,10 +23,6 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @RunWith(SpringRunner.class)
 @SpringBootTest
 public class StoryResourceIntTest {
-    //Testear que devuelve 10 elementos , con x informacion y la lista esta ordenada
-
-    @Autowired
-    private StoryResource storyResource;
 
     @Autowired
     private StoryService storyService;
@@ -44,7 +40,7 @@ public class StoryResourceIntTest {
 
     @Test
     public void getTopTenNewcomers() throws Exception {
-        restStoryMvc.perform(get("/top-ten-newcomers"))
+        restStoryMvc.perform(get("/stories/top-ten-newcomers"))
                 .andExpect(status().isOk())
                 .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
                 .andExpect(jsonPath("$", hasSize(10)))
@@ -57,6 +53,19 @@ public class StoryResourceIntTest {
                 .andExpect(jsonPath("$.[*].lifeTime").exists());
     }
 
-
+    @Test
+    public void getRecordStory() throws Exception {
+        //TODO: Access DB and compare returned object with DB object
+        restStoryMvc.perform(get("/stories/record-newcomer"))
+                .andExpect(status().isOk())
+                .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
+                .andExpect(jsonPath("$.id").exists())
+                .andExpect(jsonPath("$.title").exists())
+                .andExpect(jsonPath("$.score").exists())
+                .andExpect(jsonPath("$.author").exists())
+                .andExpect(jsonPath("$.commentsCount").exists())
+                .andExpect(jsonPath("$.creationDate").exists())
+                .andExpect(jsonPath("$.lifeTime").exists());
+    }
 
 }

@@ -1,0 +1,46 @@
+databaseChangeLog:
+  - changeSet:
+      id: 1
+      author: alejandro.martinez
+      changes:
+        - createTable:
+            tableName: story
+            columns:
+              - column:
+                  name: id
+                  type: bigint
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: by
+                  type: varchar(255)
+              - column:
+                  name: score
+                  type: varchar(255)
+              - column:
+                  name: time
+                  type: varchar(255)
+              - column:
+                  name: title
+                  type: varchar(255)
+              - column:
+                  name: type
+                  type: varchar(255)
+              - column:
+                  name: url
+                  type: varchar(255)
+              - column:
+                  name: rank
+                  type: double
+              - column:
+                  name: life_time
+                  type: bigint
+        - createIndex:
+            columns:
+            - column:
+                name: rank
+                type: double
+            indexName: idx_rank
+            tableName: story
+            unique: false

@@ -8,11 +8,13 @@ import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 
 @RestController
+@RequestMapping("/stories")
 public class StoryResource {
 
     private final static Logger log = LoggerFactory.getLogger(StoryResource.class);
@@ -26,7 +28,7 @@ public class StoryResource {
     }
 
     /**
-     *  GET /top-ten-newcomers : Gets a list with the top ten newcomers.
+     *  GET /stories/top-ten-newcomers : Gets a list with the top ten newcomers.
      *
      * @return The list with the top ten newcomers
      */
@@ -36,6 +38,18 @@ public class StoryResource {
         log.info("Accessed top-ten-newcomers endpoint");
         return new ResponseEntity<>(storyMapper.storiesToStoryDTOs(
                 storyService.getTop10NewComers(currentTime)), HttpStatus.OK);
+    }
+
+    /**
+     *  GET /stories/record-newcomer : Gets the current newcomer record holder
+     *
+     * @return the story
+     */
+    @GetMapping("/record-newcomer")
+    public ResponseEntity<StoryDTO> getRecordStory(){
+        log.info("Accessed record-newcomer endpoint");
+        return new ResponseEntity<>(storyMapper.storyToStoryDTO(storyService.getRecordStory()),
+                HttpStatus.OK);
     }
 
 }
