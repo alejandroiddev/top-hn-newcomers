@@ -41,7 +41,7 @@ to use the application  in development run:
 
 ### - Production
 
-for production usage yoo can create an executable file whith the following command: 
+for production usage yoo can create an executable file with the following command: 
 
     ./mvnw clean package
 
@@ -61,4 +61,5 @@ and then run the created package:
  - Logging aspect
  - Simple web with top ten board
  - Reactive 
+ - Cucumber tests
  - ...

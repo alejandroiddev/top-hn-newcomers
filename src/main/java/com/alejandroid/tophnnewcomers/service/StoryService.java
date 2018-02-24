@@ -44,13 +44,13 @@ public class StoryService {
         return newcomers.subList(0, 10);
     }
 
-    private void updateLists() {
+    public void updateLists() {
         Long currentTime = System.currentTimeMillis() / 1000L;
         newStories = hackerNewsService.getNewStories();
         List<Story> newcomers = newStories
                 .parallelStream().map(id -> hackerNewsService.findStory(id, currentTime))
                 .sorted().collect(Collectors.toList());
-        top40NewComers = newcomers.subList(0, 30);
+        top40NewComers = newcomers.subList(0, newcomers.size() > 30 ? 30 : newcomers.size());
     }
 
     @Scheduled(fixedDelay = SCHEDULER_DELAY, initialDelay = SCHEDULER_DELAY)
