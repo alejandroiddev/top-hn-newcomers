@@ -16,6 +16,6 @@ public class HackerNewsServiceUnitTest {
     @Test
     public void testFindStory() {
         HackerNewsService hackerNewsService = new HackerNewsService();
-        System.out.println(hackerNewsService.findStory(16447230L));
+        System.out.println(hackerNewsService.findStory(16447230L, 1L));
     }
 }

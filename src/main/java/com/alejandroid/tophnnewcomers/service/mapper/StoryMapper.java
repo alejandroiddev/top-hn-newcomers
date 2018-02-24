@@ -5,6 +5,7 @@ import com.alejandroid.tophnnewcomers.resource.dto.StoryDTO;
 import org.springframework.beans.BeanUtils;
 import org.springframework.stereotype.Component;
 
+import java.util.Date;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -14,7 +15,10 @@ public class StoryMapper {
     public StoryDTO storyToStoryDTO(Story story) {
         StoryDTO storyDTO = new StoryDTO();
         BeanUtils.copyProperties(story, storyDTO);
-        return new StoryDTO();
+        storyDTO.setAuthor(story.getBy())
+                .setCommentsCount(story.getKids().size())
+                .setCreationDate(new Date(story.getTime() * 1000));
+        return storyDTO;
     }
 
     public List<StoryDTO> storiesToStoryDTOs(List<Story> stories) {

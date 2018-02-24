@@ -1,17 +1,21 @@
 package com.alejandroid.tophnnewcomers.domain;
 
+import java.util.ArrayList;
 import java.util.List;
 
-public class Story {
+public class Story implements Comparable<Story> {
+
+    private Long id;
 
     private String by;
-    private Long id;
-    private List<Long> kids;
+    private List<Long> kids = new ArrayList<>();
     private Long score;
     private Long time;
     private String title;
     private String type;
     private String url;
+    private Double rank;
+    private Long lifeTime;
 
     public String getBy() {
         return by;
@@ -85,17 +89,46 @@ public class Story {
         return this;
     }
 
+    public Double getRank() {
+        if (rank == null) {
+            rank = score.doubleValue() / lifeTime.doubleValue();
+        }
+        return rank;
+    }
+
+    public Story setRank(Double rank) {
+        this.rank = rank;
+        return this;
+    }
+
+    public Long getLifeTime() {
+        return lifeTime;
+    }
+
+    public Story setLifeTime(Long lifeTime) {
+        this.lifeTime = lifeTime;
+        return this;
+    }
+
     @Override
     public String toString() {
         return "Story{" +
-                "by='" + by + '\'' +
-                ", id=" + id +
+                "id=" + id +
+                ", by='" + by + '\'' +
                 ", kids=" + kids +
                 ", score=" + score +
                 ", time=" + time +
                 ", title='" + title + '\'' +
                 ", type='" + type + '\'' +
                 ", url='" + url + '\'' +
+                ", rank=" + rank +
+                ", lifeTime=" + lifeTime +
                 '}';
+    }
+
+    @Override
+    public int compareTo(Story o) {
+        double result = (o.getRank() - this.getRank());
+        return result > 0.0 ? 1 : -1;
     }
 }

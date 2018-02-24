@@ -1,6 +1,8 @@
 package com.alejandroid.tophnnewcomers.resource.dto;
 
-import java.time.ZonedDateTime;
+import com.fasterxml.jackson.annotation.JsonFormat;
+
+import java.util.Date;
 
 public class StoryDTO {
 
@@ -9,8 +11,9 @@ public class StoryDTO {
     private String title;
     private Long score;
     private String author;
-    private Long commentsCount;
-    private ZonedDateTime creationDate;
+    private Integer commentsCount;
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm a z")
+    private Date creationDate;
     private Long lifeTime;
 
     public Long getId() {
@@ -49,20 +52,20 @@ public class StoryDTO {
         return this;
     }
 
-    public Long getCommentsCount() {
+    public Integer getCommentsCount() {
         return commentsCount;
     }
 
-    public StoryDTO setCommentsCount(Long commentsCount) {
+    public StoryDTO setCommentsCount(Integer commentsCount) {
         this.commentsCount = commentsCount;
         return this;
     }
 
-    public ZonedDateTime getCreationDate() {
+    public Date getCreationDate() {
         return creationDate;
     }
 
-    public StoryDTO setCreationDate(ZonedDateTime creationDate) {
+    public StoryDTO setCreationDate(Date creationDate) {
         this.creationDate = creationDate;
         return this;
     }
