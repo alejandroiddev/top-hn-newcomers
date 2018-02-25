@@ -2,7 +2,9 @@
 
 This spring-boot app creates a top 10 Stories from the 500 newest stories in hacker news.
 
-It has an endpoint (`/top-ten-newcomers`) to retrieve the top 10. 
+It has an endpoint (`/stories/top-ten-newcomers`) to retrieve the top 10. 
+
+New: It has and endpoint to get the top newcomer so far: `/stories/record-newcomer`
 
 The ranking is established by the average rate of point growth, this given by the story current points divided by its 
 life time
@@ -31,7 +33,7 @@ You need to have version 1.8 of Java installed.
 ## Usage
 
 With the application running the endpoint can be accessed from 
-[http://localhost:8080/top-ten-newcomers](http://localhost:8080/top-ten-newcomers)
+[http://localhost:8080/stories/top-ten-newcomers](http://localhost:8080/stories/top-ten-newcomers)
 
 ### - Development
 
