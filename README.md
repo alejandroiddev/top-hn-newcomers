@@ -31,6 +31,13 @@ To keep in mind:
 ## Requirements
 
 You need to have version 1.8 of Java installed. 
+You also need a running postgresql data base. You can use docker to run it without installation running the following command:
+
+    docker run --name dbname-psql \
+    -p 5432:5432 \
+    -e POSTGRES_DB=hnNewcomers \
+    -e POSTGRES_PASSWORD=[password] \
+    -d postgres
 
 ## Usage
 
